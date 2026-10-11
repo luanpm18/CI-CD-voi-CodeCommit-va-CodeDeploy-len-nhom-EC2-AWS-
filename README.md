@@ -9,7 +9,7 @@
 | Họ và tên | MSSV |
 |---|---|
 | Trần Hải Đạt | 24110197 |
-| Phạm Minh Luân | 24110227 |
+| Phạm Minh Luân | 24110277 |
 
 - **AWS Region:** us-east-1 (N. Virginia)
 
