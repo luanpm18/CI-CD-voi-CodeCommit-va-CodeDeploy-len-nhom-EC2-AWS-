@@ -24,7 +24,7 @@
 
 ## 2. CHI TIẾT CÔNG VIỆC TỪNG SINH VIÊN
 
-### Sinh viên 1: Phạm Minh Luân (MSSV: `24110227`)
+### Sinh viên 1: Phạm Minh Luân (MSSV: `24110277`)
 * **Tìm hiểu công nghệ:** Nghiên cứu tổng quan về mô hình CI/CD và cơ chế hoạt động của CodeCommit, CodeDeploy.
 * **Khởi tạo hạ tầng EC2:** Tạo cụm 2 máy chủ ảo Amazon EC2 với tên định danh lần lượt là `cicd-web-1` và `cicd-web-2`, đồng thời thiết lập hệ thống Tagging theo đúng chuẩn quy ước của nhóm.
 * **Cấu hình CodeDeploy Agent:** Tiến hành cài đặt, cấu hình và kiểm tra trạng thái hoạt động của `codedeploy-agent` trên các instance EC2 để sẵn sàng tiếp nhận mã nguồn triển khai tự động.
