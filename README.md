@@ -5,7 +5,7 @@
 - **Môn học:** Điện toán đám mây (Cloud Computing) - Đợt 1
 - **Giảng viên hướng dẫn:** ThS. Huỳnh Xuân Phụng
 - **Nhóm thực hiện:**
-
+- 
 | Họ và tên | MSSV |
 |---|---|
 | Trần Hải Đạt | 24110197 |
