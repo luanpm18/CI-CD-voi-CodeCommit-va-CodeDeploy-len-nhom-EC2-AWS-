@@ -12,7 +12,7 @@
 
 ## 1. BẢNG TỔNG HỢP PHÂN CÔNG VÀ GIỜ LÀM VIỆC TUẦN 1
 
-| Công việc | Phạm Minh Luân (24110227) | Trần Hải Đạt (24110197) | Trạng thái |
+| Công việc | Phạm Minh Luân (24110277) | Trần Hải Đạt (24110197) | Trạng thái |
 | :--- | :---: | :---: | :---: |
 | **Tìm hiểu lý thuyết CI/CD, CodeCommit, CodeDeploy** | ✓ | ✓ | Hoàn thành |
 | **Thiết kế kiến trúc dự kiến và quy ước tag tài nguyên** | | ✓ | Hoàn thành |
