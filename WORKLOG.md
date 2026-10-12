@@ -31,5 +31,5 @@
 
 ### Sinh viên 2: Trần Hải Đạt (MSSV: `24110197`)
 * **Nghiên cứu lý thuyết:** Phối hợp nghiên cứu các tài liệu kỹ thuật về dịch vụ lưu trữ mã nguồn AWS CodeCommit và công cụ tự động hóa triển khai CodeDeploy.
-* **Thiết kế hệ thống:** Xây dựng bản thiết kế kiến trúc dự kiến cho hệ thống CI/CD (DevOps & IaC) và định nghĩa quy chuẩn gắn nhãn (`Tags`) cho toàn bộ tài nguyên AWS.
+* **Thiết kế hệ thống:** Xây dựng bản thiết kế kiến trúc dự kiến cho hệ thống CI/CD (DevOps & IaC) và định nghĩa quy chuẩn gắn nhãn (`Tags`) cho toàn bộ tài nguyên AWS .
 * **Lập tài liệu:** Tổng hợp thông tin, soạn thảo và hoàn thiện tài liệu báo cáo tiến độ công việc của tuần 1.
