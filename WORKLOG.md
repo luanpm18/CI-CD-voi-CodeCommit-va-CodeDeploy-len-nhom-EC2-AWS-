@@ -6,7 +6,7 @@
 * Thiết kế mô hình kiến trúc dự kiến và quy ước gắn nhãn (Tagging) cho tài nguyên.
 * Tạo cụm máy chủ ảo Amazon EC2 (`cicd-web-1`, `cicd-web-2`) và cấu hình Tagging đầy đủ.
 * Cài đặt, cấu hình và kiểm tra trạng thái hoạt động của CodeDeploy Agent trên các máy chủ EC2.
-* Hoàn thành tài liệu báo cáo tiến độ tuần 1 .
+* Hoàn thành tài liệu báo cáo tiến độ tuần 1.
 
 ---
 
