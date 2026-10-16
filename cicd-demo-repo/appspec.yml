@@ -1,0 +1,52 @@
+# ==============================================================================
+# File: appspec.yml (Application Specification)
+# Tác dụng: Đây là file cấu hình trung tâm mà AWS CodeDeploy Agent trên EC2 sẽ đọc.
+# Nó chỉ định:
+#   1. Copy các file mã nguồn từ gói zip vào thư mục nào trên hệ điều hành EC2.
+#   2. Thứ tự và thời điểm thực thi các script trong chu kỳ triển khai (Lifecycle Hooks).
+# ==============================================================================
+
+version: 0.0
+os: linux
+
+# Phần 1: Khai báo các file cần copy vào EC2
+files:
+  - source: /src
+    destination: /var/www/html
+    overwrite: true
+
+# Phần 2: Khai báo các Hook theo vòng đời triển khai (Lifecycle Event Hooks)
+hooks:
+  # Hook 1: ApplicationStop - Dừng ứng dụng/dịch vụ trước khi cài bản mới
+  # (Chạy script của phiên bản deploy trước đó nếu có)
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 60
+      runas: root
+
+  # Hook 2: BeforeInstall - Chuẩn bị môi trường trước khi copy file mới vào
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 120
+      runas: root
+
+  # (Lưu ý: Sau BeforeInstall là sự kiện Install do Agent tự động copy file theo mục 'files', không viết script)
+
+  # Hook 3: AfterInstall - Cấu hình sau khi copy file (phân quyền, ghi log phiên bản)
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 60
+      runas: root
+
+  # Hook 4: ApplicationStart - Khởi động lại dịch vụ/ứng dụng web
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 60
+      runas: root
+
+  # Hook 5: ValidateService - Kiểm tra dịch vụ có hoạt động ổn định không
+  # Nếu script này thoát với mã lỗi (exit 1), CodeDeploy sẽ kích hoạt Auto-Rollback
+  ValidateService:
+    - location: scripts/validate_service.sh
+      timeout: 60
+      runas: root

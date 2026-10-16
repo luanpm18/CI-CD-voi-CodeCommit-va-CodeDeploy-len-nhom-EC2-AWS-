@@ -1,0 +1,11 @@
+# Temporary office files
+~$*
+*.tmp
+
+# Environment and keys
+.env
+*.pem
+credentials
+
+# Archives
+*.zip
