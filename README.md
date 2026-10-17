@@ -67,7 +67,7 @@ Bảng tổng hợp chi tiết công việc từng thành viên đã thực hi�
 
 Bảng điều hướng nhanh đến các tài nguyên và mã nguồn trong repository:
 
-- 📑 **Báo cáo tiến độ:** [`Bao Cao Tien Do/`](./Bao%20Cao%20Tien%20Do/)
+-  **Báo cáo tiến độ:** [`Bao Cao Tien Do/`](./Bao%20Cao%20Tien%20Do/)
   - [Báo cáo tiến độ tuần 1 (PDF)](./Bao%20Cao%20Tien%20Do/Bao%20Cao%20Tien%20Do%20Tuan%201.pdf) | [Bản Word (.docx)](./Bao%20Cao%20Tien%20Do/Bao%20Cao%20Tien%20Do%20Tuan%201.docx)
   - [Báo cáo tiến độ tuần 2 (PDF)](./Bao%20Cao%20Tien%20Do/BaoCaoTienDoTuan2DienToanDamMay.pdf) | [Bản Word (.docx)](./Bao%20Cao%20Tien%20Do/BaoCaoTienDoTuan2DienToanDamMay.docx)
 -  **Nhật ký công việc (Worklog):** [`WORKLOG.md`](./WORKLOG.md)
