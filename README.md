@@ -180,6 +180,36 @@ aws deploy create-deployment \
 
 ---
 
+## **Các Commit Tiêu Biểu Trên GitHub (Week 2)**
+
+Các commit quan trọng ghi nhận tiến trình phát triển và hoàn thiện hệ thống trong Tuần 2:
+
+| SHA Commit | Thông Điệp Commit | Nội Dung Triển Khai | Đường Dẫn Chi Tiết |
+| :--- | :--- | :--- | :--- |
+| [`5d28b9c`](https://github.com/luanpm18/CI-CD-voi-CodeCommit-va-CodeDeploy-len-nhom-EC2-AWS-/commit/5d28b9c) | `feat: complete week 2 - add cicd-demo-repo and update worklog with hours worked` | Khởi tạo thư mục mã nguồn `cicd-demo-repo`, file `appspec.yml`, 5 hook scripts và cập nhật WORKLOG Tuần 2 | [Xem Commit 5d28b9c](https://github.com/luanpm18/CI-CD-voi-CodeCommit-va-CodeDeploy-len-nhom-EC2-AWS-/commit/5d28b9c) |
+| [`08dd4a6`](https://github.com/luanpm18/CI-CD-voi-CodeCommit-va-CodeDeploy-len-nhom-EC2-AWS-/commit/08dd4a6) | `Cập nhật báo cáo tiến độ tuần 2` | Cập nhật tài liệu báo cáo tiến độ tuần 2 dạng Word (.docx) và PDF | [Xem Commit 08dd4a6](https://github.com/luanpm18/CI-CD-voi-CodeCommit-va-CodeDeploy-len-nhom-EC2-AWS-/commit/08dd4a6) |
+| [`1be3a85`](https://github.com/luanpm18/CI-CD-voi-CodeCommit-va-CodeDeploy-len-nhom-EC2-AWS-/commit/1be3a85) | `docs: bổ sung phân công nhiệm vụ thành viên và liên kết điều hướng tài nguyên trong README` | Bổ sung phân công chi tiết của 2 thành viên và bảng link điều hướng đến tài liệu | [Xem Commit 1be3a85](https://github.com/luanpm18/CI-CD-voi-CodeCommit-va-CodeDeploy-len-nhom-EC2-AWS-/commit/1be3a85) |
+
+---
+
+## **Kế Hoạch Thực Hiện Tuần 3**
+
+Kế hoạch nâng cấp và kiểm thử nâng cao hệ thống CI/CD dự kiến trong Tuần 3:
+
+1. **Nghiên cứu & Thiết kế Blue/Green Deployment:**
+   - Tìm hiểu cơ chế chuyển hướng lưu lượng (Traffic Rerouting) bằng Application Load Balancer (ALB) kết hợp 2 Target Groups (Original và Replacement).
+   - Thiết kế mô hình kiến trúc Blue/Green trên cụm EC2 để đảm bảo Zero Downtime tuyệt đối khi cập nhật phiên bản mới.
+2. **Tích hợp Giám sát & Rollback Tự động theo điều kiện (CloudWatch Alarms):**
+   - Thiết lập Amazon CloudWatch Alarms để theo dõi trạng thái sức khỏe của cụm EC2 (ngưỡng CPU Utilization > 80%, lỗi phản hồi HTTP 5xx).
+   - Cấu hình CodeDeploy Deployment Group tự động dừng và kích hoạt Rollback ngay khi CloudWatch kích hoạt cảnh báo Alarm.
+3. **Triển khai Phiên bản v2 & Kiểm thử Thực tế:**
+   - Xây dựng bản cập nhật ứng dụng Web v2 và đóng gói triển khai.
+   - Kiểm thử kịch bản triển khai thành công và kiểm thử kịch bản giả lập lỗi (Validation Script Fail) để kiểm tra khả năng tự động khôi phục về bản v1.
+4. **Hoàn thiện Báo cáo Tiến độ Tuần 3:**
+   - Cập nhật nhật ký công việc [WORKLOG.md](./WORKLOG.md) và biên soạn tài liệu báo cáo tuần 3 đầy đủ số liệu kiểm thử.
+
+---
+
 ## **Kết Luận**
 
 Hệ thống CI/CD trên AWS được triển khai theo mô hình thực tế, tích hợp chặt chẽ giữa **CodeCommit**, **S3**, **CodeDeploy** và **EC2**, giúp tự động hóa quy trình giao hàng phần mềm một cách ổn định, an toàn và dễ vận hành. Việc áp dụng lifecycle hooks và cơ chế rollback giúp giảm thiểu rủi ro trong quá trình cập nhật phiên bản ứng dụng trên môi trường sản xuất ảo.
