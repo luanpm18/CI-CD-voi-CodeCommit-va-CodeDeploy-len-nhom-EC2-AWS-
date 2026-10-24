@@ -26,6 +26,7 @@ Dự án xây dựng quy trình triển khai ứng dụng web tự động lên 
 - Deployment Group `cicd-dg-dev` dùng chiến lược `OneAtATime`, gắn các alarm và bật rollback khi deployment thất bại hoặc khi ngưỡng alarm bị kích hoạt.
 - **Kiểm thử bản lỗi:** `ValidateService` thất bại với bản cố ý làm sai chuỗi kiểm tra; CodeDeploy tự triển khai lại revision Version 2 thành công. Máy chủ còn lại được bỏ qua trong lượt triển khai lỗi.
 - **Kiểm thử alarm:** khi alarm `cicd-cpu-web-1` được chuyển sang trạng thái báo động trong lúc triển khai, deployment đang chạy chuyển sang `Stopped`.
+- Fixture phục vụ kiểm thử rollback được lưu trong [`cicd-bad/`](./cicd-bad/); đây là revision cố ý làm hỏng bước `ValidateService`, không dùng cho triển khai thông thường.
 - S3 bật chặn truy cập công khai và mã hóa mặc định SSE-S3; quy tắc SSH được giới hạn theo IP quản trị thay vì mở cho mọi địa chỉ.
 - Nhóm đã tìm hiểu Blue/Green Deployment. Dự án hiện dùng In-place theo yêu cầu và giới hạn tài nguyên của AWS Learner Lab; `OneAtATime` không đồng nghĩa với bảo đảm không gián đoạn dịch vụ.
 
@@ -73,6 +74,10 @@ Nếu hook kiểm tra thất bại, CodeDeploy đánh dấu deployment thất b�
 ```text
 .
 ├── Bao Cao Tien Do/           # Báo cáo Word/PDF theo tuần
+├── cicd-bad/                   # Fixture cố ý lỗi để kiểm thử rollback
+│   ├── appspec.yml
+│   ├── src/
+│   └── scripts/
 ├── cicd-demo-repo/
 │   ├── appspec.yml
 │   ├── src/
@@ -112,7 +117,7 @@ aws deploy create-deployment `
   --region us-east-1
 ```
 
-Theo dõi trạng thái deployment trong AWS CodeDeploy trước khi xác nhận ứng dụng trên cả hai EC2. Không triển khai revision lỗi dùng riêng cho kiểm thử rollback vào môi trường sử dụng bình thường.
+Theo dõi trạng thái deployment trong AWS CodeDeploy trước khi xác nhận ứng dụng trên cả hai EC2. Không đóng gói hoặc triển khai revision trong [`cicd-bad/`](./cicd-bad/) vào môi trường sử dụng bình thường.
 
 ## Bảo mật và lưu ý vận hành
 
