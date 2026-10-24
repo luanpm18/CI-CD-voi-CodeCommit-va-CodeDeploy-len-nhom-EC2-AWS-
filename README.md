@@ -29,6 +29,18 @@ Dự án xây dựng quy trình triển khai ứng dụng web tự động lên 
 - S3 bật chặn truy cập công khai và mã hóa mặc định SSE-S3; quy tắc SSH được giới hạn theo IP quản trị thay vì mở cho mọi địa chỉ.
 - Nhóm đã tìm hiểu Blue/Green Deployment. Dự án hiện dùng In-place theo yêu cầu và giới hạn tài nguyên của AWS Learner Lab; `OneAtATime` không đồng nghĩa với bảo đảm không gián đoạn dịch vụ.
 
+## Báo cáo, tài liệu và phân công Tuần 3
+
+- **Báo cáo tiến độ Tuần 3:** [PDF](./Bao%20Cao%20Tien%20Do/BaoCaoTienDoTuan3DienToanDamMay.pdf) | [Word](./Bao%20Cao%20Tien%20Do/BaoCaoTienDoTuan3DienToanDamMay.docx)
+- **Báo cáo các tuần trước:** [Tuần 1 (PDF)](./Bao%20Cao%20Tien%20Do/Bao%20Cao%20Tien%20Do%20Tuan%201.pdf) | [Tuần 2 (PDF)](./Bao%20Cao%20Tien%20Do/BaoCaoTienDoTuan2DienToanDamMay.pdf)
+- **Nhật ký công việc:** [WORKLOG.md](./WORKLOG.md)
+- **Tài liệu thiết kế:** [Sơ đồ kiến trúc](./docs/Kien%20Truc%20Du%20An%20.png) | [Quy ước gắn tag](./docs/Quy%20uoc%20Tags.md)
+
+Phân công chính trong Tuần 3:
+
+- **Trần Hải Đạt:** triển khai Version 2, thiết lập CloudWatch Alarm và rollback trong Deployment Group, chuẩn bị revision lỗi để kiểm thử và rà soát bảo mật.
+- **Phạm Minh Luân:** kiểm tra hạ tầng, xây dựng quy trình triển khai và kiểm thử các kịch bản rollback/alarm, cập nhật README, worklog và báo cáo.
+
 ## Kiến trúc và luồng triển khai
 
 ```text
@@ -60,6 +72,7 @@ Nếu hook kiểm tra thất bại, CodeDeploy đánh dấu deployment thất b�
 
 ```text
 .
+├── Bao Cao Tien Do/           # Báo cáo Word/PDF theo tuần
 ├── cicd-demo-repo/
 │   ├── appspec.yml
 │   ├── src/
@@ -70,9 +83,7 @@ Nếu hook kiểm tra thất bại, CodeDeploy đánh dấu deployment thất b�
 │       ├── after_install.sh
 │       ├── start_server.sh
 │       └── validate_service.sh
-├── cicd-bad/                 # Revision lỗi cố ý để kiểm thử; không dùng triển khai thường
-├── evidence/
-│   └── week3-log.txt
+├── docs/                      # Sơ đồ kiến trúc và quy ước tag
 ├── WORKLOG.md
 └── README.md
 ```
@@ -101,7 +112,7 @@ aws deploy create-deployment `
   --region us-east-1
 ```
 
-Theo dõi trạng thái deployment trong AWS CodeDeploy trước khi xác nhận ứng dụng trên cả hai EC2. Không đưa revision lỗi trong `cicd-bad/` vào quy trình triển khai thông thường.
+Theo dõi trạng thái deployment trong AWS CodeDeploy trước khi xác nhận ứng dụng trên cả hai EC2. Không triển khai revision lỗi dùng riêng cho kiểm thử rollback vào môi trường sử dụng bình thường.
 
 ## Bảo mật và lưu ý vận hành
 
