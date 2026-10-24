@@ -2,23 +2,34 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <title>CI/CD Demo - Version 1</title>
+  <title>CI/CD Demo - Version 2</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       margin-top: 60px;
-      background-color: #f3f4f6;
+      background-color: #1e3a5f;
     }
     .card {
       background: white;
       padding: 40px;
       border-radius: 12px;
       display: inline-block;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
       max-width: 500px;
     }
-    h1 { color: #1f2937; margin-bottom: 15px; }
+    h1 { color: #1e3a5f; margin-bottom: 15px; }
+    .version-badge {
+      background: #1e3a5f;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
     .status {
       color: #16a34a;
       font-weight: bold;
@@ -33,8 +44,9 @@
 </head>
 <body>
   <div class="card">
-    <!-- Tiêu đề hiển thị phiên bản hiện tại (Version 1) -->
-    <h1>CI/CD Demo - Version 1</h1>
+    <!-- Tiêu đề hiển thị phiên bản hiện tại (Version 2) -->
+    <div class="version-badge">VERSION 2</div>
+    <h1>CI/CD Demo - Version 2</h1>
 
     <!-- DÒNG TRẠNG THÁI CỰC KỲ QUAN TRỌNG: -->
     <!-- Script 'validate_service.sh' sẽ dùng lệnh curl quét tìm chuỗi 'STATUS: healthy' này. -->
