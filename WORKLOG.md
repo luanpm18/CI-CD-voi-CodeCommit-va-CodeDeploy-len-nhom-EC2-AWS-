@@ -78,3 +78,58 @@
 * **Quản lý mã nguồn:** Thiết lập kho lưu trữ CodeCommit `cicd-demo-repo` tại vùng `us-east-1` và quản lý đồng bộ cây thư mục trên GitHub repo.
 * **Phát triển ứng dụng & Kịch bản:** Xây dựng giao diện web phiên bản 1 (`src/index.html`), cấu hình file trung tâm `appspec.yml` và viết chi tiết 5 kịch bản hook (`stop_server.sh`, `before_install.sh`, `after_install.sh`, `start_server.sh`, `validate_service.sh`), chuẩn hóa định dạng dòng LF và quyền thực thi `+x`.
 * **Kiểm thử & Lập báo cáo:** Đóng gói file nén `app-v1.zip`, kiểm thử truy cập thực tế qua 2 địa chỉ Public IP (`54.174.23.97` và `13.223.51.85`), thu thập minh chứng và hoàn thiện báo cáo tiến độ tuần 2.
+
+---
+
+# TUẦN 3: GIÁM SÁT BẰNG CLOUDWATCH ALARM, KIỂM THỬ ROLLBACK TỰ ĐỘNG VÀ TĂNG CƯỜNG BẢO MẬT
+
+**Thời gian thực hiện:** 19/10/2026 – 25/10/2026  
+**Mục tiêu tuần 3:**
+* Triển khai phiên bản v2 (`app-v2.zip`) lên cả 2 máy chủ EC2 và xác nhận hiển thị VERSION 2.
+* Tạo 4 CloudWatch Alarm (`cicd-cpu-web-1/2`, `cicd-status-web-1/2`), gắn vào Deployment Group `cicd-dg-dev` và bật Rollback khi deployment fail và khi alarm kích hoạt.
+* Kiểm thử kịch bản A: triển khai bản lỗi (`app-v3-bad`), quan sát CodeDeploy tự động Rollback.
+* Kiểm thử kịch bản B: ép Alarm kích hoạt khi đang triển khai, quan sát deployment bị dừng.
+* Tăng cường bảo mật: giới hạn SSH theo IP cá nhân, S3 bật Block Public Access và Default encryption.
+* Nghiên cứu Blue/Green Deployment (chỉ nghiên cứu, không triển khai).
+* Hoàn thiện README, WORKLOG và báo cáo tiến độ Tuần 3.
+
+---
+
+## 1. BẢNG TỔNG HỢP PHÂN CÔNG VÀ GIỜ LÀM VIỆC TUẦN 3
+
+| Công việc | Phạm Minh Luân (24110277) | Trần Hải Đạt (24110197) | Giờ làm việc | Trạng thái |
+| :--- | :---: | :---: | :---: | :---: |
+| **Kiểm tra hạ tầng đầu tuần (EC2, CodeDeploy Agent, S3)** | ✓ | | 1.5 giờ | Hoàn thành |
+| **Viết `deploy.ps1` (đóng gói zip, upload S3, tạo deployment, chờ kết quả) và chạy thử** | ✓ | | 2.5 giờ | Hoàn thành |
+| **Chạy kịch bản A (deploy bản lỗi, xem Rollback)** | ✓ | | 2 giờ | Hoàn thành |
+| **Chạy kịch bản B (Alarm kích hoạt khi đang triển khai)** | ✓ | | 2 giờ | Hoàn thành |
+| **Viết README, WORKLOG và chỉnh sửa báo cáo Word** | ✓ | | 1 giờ | Hoàn thành |
+| **Triển khai phiên bản 2 (Version 2) lên 2 EC2** | | ✓ | 1.5 giờ | Hoàn thành |
+| **Thiết lập 4 CloudWatch Alarm** | | ✓ | 2.0 giờ | Hoàn thành |
+| **Gắn Alarm vào Deployment Group và bật Rollback** | | ✓ | 1.5 giờ | Hoàn thành |
+| **Thiết lập thư mục `cicd-bad` để test lỗi** | | ✓ | 1.5 giờ | Hoàn thành |
+| **Thiết lập bảo mật (Security Group, S3 Block Public Access, Default encryption)** | | ✓ | 1.5 giờ | Hoàn thành |
+| **Chụp và sắp xếp ảnh minh chứng** | | ✓ | 1.0 giờ | Hoàn thành |
+
+* **Tổng số giờ làm việc Tuần 3:**
+  * **Phạm Minh Luân:** 9.0 giờ (Đạt yêu cầu ≥ 8 giờ/SV).
+  * **Trần Hải Đạt:** 9.0 giờ (Đạt yêu cầu ≥ 8 giờ/SV).
+
+---
+
+## 2. CHI TIẾT CÔNG VIỆC TỪNG SINH VIÊN TUẦN 3
+
+### Sinh viên 1: Phạm Minh Luân (MSSV: `24110277`)
+* **Kiểm tra hạ tầng đầu tuần:** Kiểm tra 2 instance `cicd-web-1`, `cicd-web-2` đang chạy, CodeDeploy Agent hoạt động và S3 Bucket `cicd-bundles-334291484116` sẵn sàng.
+* **Tự động hóa triển khai:** Viết script `deploy.ps1` thực hiện đóng gói file zip, upload lên S3, tạo deployment và chờ kết quả; chạy thử một lần để xác nhận hoạt động. Script không chứa credentials.
+* **Kịch bản A (bản lỗi, Rollback):** Triển khai `app-v3-bad` (cố ý sửa `validate_service.sh` kiểm tra chuỗi `STATUS: BROKEN`). Deployment `d-CEH74P1FM` Failed ở ValidateService, CodeDeploy tự tạo rollback `d-PZ1WTY1FM` Succeeded, đưa hệ thống về `app-v2.zip`; sau đó triển khai lại v2 (`d-HP9EBB2FM`).
+* **Kịch bản B (Alarm khi đang triển khai):** Triển khai v2, dùng CloudShell ép alarm `cicd-cpu-web-1` sang ALARM, deployment `d-JP3EKO2FM` bị Stopped; sau đó đưa alarm về OK và xác nhận 2 web vẫn hiển thị VERSION 2.
+* **Tài liệu:** Viết README, cập nhật WORKLOG, chỉnh sửa và hoàn thiện báo cáo Word Tuần 3 (gồm phần nghiên cứu Blue/Green).
+
+### Sinh viên 2: Trần Hải Đạt (MSSV: `24110197`)
+* **Triển khai v2:** Đóng gói và triển khai `app-v2.zip` (deployment `d-MB7AKSZEM`), kiểm tra website trên Public IP của cả 2 máy chủ hiển thị VERSION 2.
+* **Giám sát:** Tạo 4 CloudWatch Alarm: `cicd-cpu-web-1`, `cicd-cpu-web-2` (CPUUtilization > 80%) và `cicd-status-web-1`, `cicd-status-web-2` (StatusCheckFailed ≥ 1).
+* **Tích hợp Rollback:** Gắn 4 alarm vào Deployment Group `cicd-dg-dev`, bật rollback khi deployment fail và khi alarm kích hoạt.
+* **Bản lỗi kiểm thử:** Tạo thư mục `cicd-bad` chứa bản lỗi cố ý để kiểm thử rollback.
+* **Bảo mật:** Giới hạn SSH của Security Group `cicd-web-sg` chỉ cho IP cá nhân (`/32`), giữ HTTP 80; bật S3 Block Public Access và Default encryption SSE-S3. Chỉ dùng `LabRole`, không tạo IAM user.
+* **Minh chứng:** Chụp ảnh minh chứng (có Account ID, Region, thời gian) và sắp xếp theo thứ tự hình trong báo cáo.
