@@ -187,7 +187,7 @@ aws deploy create-deployment `
 
 ## Video Demo & Báo cáo đề tài
 
-- **Link Video Demo (YouTube / Google Drive):** `https://drive.google.com/file/d/your-video-link-here/view` *(Thời lượng: 9:15, Full HD 1080p)*
+- **Link Video Demo (YouTube / Google Drive):** https://youtu.be/dkLdsP9fIHs / https://drive.google.com/drive/folders/1mei0B_mjRlydAkb_a3_3tgatSokdC2xK?usp=sharing *(Thời lượng: 8:53, Full HD 720p)*
 - **Báo cáo tiến độ đầy đủ:** [BaoCaoTienDoTuan4.docx](./Bao%20Cao%20Tien%20Do/BaoCaoTienDoTuan4.docx)
 - **Sơ đồ thiết kế Draw.io:** [KienTrucTongThe.drawio](./docs/KienTrucTongThe.drawio)
 - **Nhật ký công việc cá nhân:** [WORKLOG.md](./WORKLOG.md)
