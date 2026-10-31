@@ -197,7 +197,7 @@
 
 ## 3. LINK VIDEO DEMO & NGHIỆM THU ĐỀ TÀI
 
-* **Link Video Demo (Google Drive / YouTube):** `https://drive.google.com/file/d/your-video-link-here/view`
+* **Link Video Demo (Google Drive / YouTube):** https://drive.google.com/drive/folders/1mei0B_mjRlydAkb_a3_3tgatSokdC2xK?usp=sharing / https://youtu.be/dkLdsP9fIHs
 * **Minh chứng hợp lệ:** Video thể hiện đầy đủ Account ID (`3342-9148-4116`), Region (`us-east-1`) và đồng hồ hệ thống góc màn hình; hoàn toàn không để lộ thông tin credentials.
 
 ---
