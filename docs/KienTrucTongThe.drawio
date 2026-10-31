@@ -1,0 +1,192 @@
+<mxfile host="app.diagrams.net" modified="2026-10-31T20:30:00.000Z" agent="Antigravity" version="24.0.0" type="device">
+  <diagram id="aws-cicd-arch" name="Kien Truc CI-CD AWS">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="950" background="#F8FAFC" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title Banner -->
+        <mxCell id="title_box" value="&lt;b style=&apos;font-size: 18px;&apos;&gt;HỆ THỐNG CI/CD VỚI AWS CODECOMMIT, S3, CODEDEPLOY VÀ CỤM EC2&lt;/b&gt;&lt;br&gt;&lt;span style=&apos;font-size: 12px; color: #475569;&apos;&gt;AWS Region: us-east-1 (N. Virginia) | Account ID: 3342-9148-4116 | Sinh viên: Phạm Minh Luân (24110277) - Trần Hải Đạt (24110197)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E293B;strokeColor=#0F172A;fontColor=#FFFFFF;align=center;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1320" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Developer Environment Box -->
+        <mxCell id="dev_box" value="MÔI TRƯỜNG PHÁT TRIỂN (DEVELOPER)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#94A3B8;fontColor=#0F172A;fontStyle=1;startSize=30;rounded=1;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="250" height="520" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dev_user" value="&lt;b&gt;Developer Workstation&lt;/b&gt;&lt;br&gt;Windows 11 / PowerShell&lt;br&gt;&lt;i&gt;Trần Hải Đạt &amp;amp; Phạm Minh Luân&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#64748B;fontColor=#1E293B;fontSize=12;shadow=1;" vertex="1" parent="dev_box">
+          <mxGeometry x="25" y="50" width="200" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dev_git" value="&lt;b&gt;Git Client&lt;/b&gt;&lt;br&gt;Commit &amp;amp; Push mã nguồn&lt;br&gt;&lt;code&gt;v3-final&lt;/code&gt; / &lt;code&gt;cicd-bad&lt;/code&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;fontColor=#1E3A8A;fontSize=11;" vertex="1" parent="dev_box">
+          <mxGeometry x="25" y="160" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dev_script" value="&lt;b&gt;Script: deploy.ps1&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size: 10px;&apos;&gt;1. Nén code thành file .zip&lt;br&gt;2. Upload gói lên S3&lt;br&gt;3. Kích hoạt AWS CodeDeploy&lt;br&gt;4. Theo dõi &amp;amp; chờ kết quả&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#F59E0B;fontColor=#78350F;align=left;spacingLeft=10;fontSize=11;shadow=1;" vertex="1" parent="dev_box">
+          <mxGeometry x="25" y="250" width="200" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dev_admin_ip" value="&lt;b&gt;IP Quản trị SSH&lt;/b&gt;&lt;br&gt;&lt;code&gt;14.191.90.189/32&lt;/code&gt;&lt;br&gt;&lt;span style=&apos;font-size: 10px; color: #047857;&apos;&gt;Giới hạn Port 22 bảo mật&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;fontColor=#065F46;fontSize=11;" vertex="1" parent="dev_box">
+          <mxGeometry x="25" y="400" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- AWS Cloud Region Outer Container -->
+        <mxCell id="aws_cloud" value="AWS CLOUD (Region: us-east-1 - N. Virginia) | Account ID: 3342-9148-4116" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#FF9900;strokeWidth=2;fontColor=#232F3E;fontStyle=1;startSize=30;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="320" y="110" width="1040" height="800" as="geometry" />
+        </mxCell>
+
+        <!-- Source & Storage Section -->
+        <mxCell id="sec_source" value="QUẢN LÝ MÃ NGUỒN &amp; ARTIFACT REVISION" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontColor=#334155;fontStyle=1;startSize=25;rounded=1;" vertex="1" parent="aws_cloud">
+          <mxGeometry x="20" y="40" width="320" height="420" as="geometry" />
+        </mxCell>
+
+        <mxCell id="codecommit" value="&lt;b&gt;AWS CodeCommit&lt;/b&gt;&lt;br&gt;Repo: &lt;b&gt;cicd-demo-repo&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size: 10px; color: #475569;&apos;&gt;Vùng: us-east-1 | Branch: main&lt;br&gt;Quản lý source code &amp;amp; hook scripts&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#8B5CF6;strokeWidth=2;fontColor=#4C1D95;fontSize=11;shadow=1;" vertex="1" parent="sec_source">
+          <mxGeometry x="20" y="45" width="280" height="75" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s3_bucket" value="&lt;b&gt;Amazon S3 Bucket&lt;/b&gt;&lt;br&gt;&lt;b style=&apos;color:#C2410C;&apos;&gt;cicd-bundles-334291484116&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&apos;text-align: left; font-size: 10px;&apos;&gt;• &lt;b&gt;Bucket Versioning:&lt;/b&gt; Enabled&lt;br&gt;• &lt;b&gt;Block Public Access:&lt;/b&gt; ON (403 Forbidden)&lt;br&gt;• &lt;b&gt;Default Encryption:&lt;/b&gt; SSE-S3 (AES256)&lt;br&gt;• &lt;b&gt;Revisions:&lt;/b&gt; app-v3-final.zip, app-v4-bad.zip, app-cicd-slow.zip&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=2;fontColor=#7C2D12;fontSize=11;align=center;shadow=1;" vertex="1" parent="sec_source">
+          <mxGeometry x="20" y="150" width="280" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iam_labrole" value="&lt;b&gt;IAM Service Role: LabRole&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size: 10px; color: #475569;&apos;&gt;Cấp quyền cho CodeDeploy điều phối EC2, đọc S3, nhận tín hiệu từ CloudWatch&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#EF4444;fontColor=#991B1B;fontSize=11;" vertex="1" parent="sec_source">
+          <mxGeometry x="20" y="320" width="280" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- CodeDeploy Orchestration Section -->
+        <mxCell id="sec_codedeploy" value="ĐIỀU PHỐI TRIỂN KHAI (AWS CODEDEPLOY)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontColor=#334155;fontStyle=1;startSize=25;rounded=1;" vertex="1" parent="aws_cloud">
+          <mxGeometry x="370" y="40" width="320" height="420" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cd_app" value="&lt;b&gt;CodeDeploy Application&lt;/b&gt;&lt;br&gt;&lt;b style=&apos;color:#1D4ED8;&apos;&gt;cicd-app&lt;/b&gt;&lt;br&gt;Compute Platform: EC2/On-premises" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=2;fontColor=#1E40AF;fontSize=11;shadow=1;" vertex="1" parent="sec_codedeploy">
+          <mxGeometry x="20" y="45" width="280" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cd_dg" value="&lt;b&gt;Deployment Group: cicd-dg-dev&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;div style=&apos;text-align: left; font-size: 10px;&apos;&gt;• &lt;b&gt;Target Instances:&lt;/b&gt; Tag &lt;code&gt;Env=dev&lt;/code&gt;&lt;br&gt;• &lt;b&gt;Deployment Type:&lt;/b&gt; In-place&lt;br&gt;• &lt;b&gt;Strategy:&lt;/b&gt; &lt;code&gt;CodeDeployDefault.OneAtATime&lt;/code&gt;&lt;br&gt;• &lt;b&gt;Auto-Rollback:&lt;/b&gt;&lt;br&gt;  - Rollback on Failure (E2)&lt;br&gt;  - Rollback on Alarm Triggered (E3)&lt;br&gt;• &lt;b&gt;Alarms Attached:&lt;/b&gt; 4 CloudWatch Alarms&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#3B82F6;strokeWidth=2;fontColor=#1E3A8A;fontSize=11;align=center;shadow=1;" vertex="1" parent="sec_codedeploy">
+          <mxGeometry x="20" y="130" width="280" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cd_hooks" value="&lt;b&gt;7 Sự kiện vòng đời (Lifecycle)&lt;/b&gt;&lt;br&gt;&lt;font style=&apos;font-size: 9px; color: #334155;&apos;&gt;AppStop → DownloadBundle* → BeforeInstall → Install* → AfterInstall → AppStart → ValidateService&lt;br&gt;&lt;i&gt;(* do Agent tự động, 5 script do SV viết)&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;fontColor=#0F172A;fontSize=10;" vertex="1" parent="sec_codedeploy">
+          <mxGeometry x="20" y="320" width="280" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- CloudWatch Monitoring Box -->
+        <mxCell id="sec_cloudwatch" value="GIÁM SÁT VÀ BÁO ĐỘNG (AMAZON CLOUDWATCH)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontColor=#334155;fontStyle=1;startSize=25;rounded=1;" vertex="1" parent="aws_cloud">
+          <mxGeometry x="720" y="40" width="300" height="420" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cw_desc" value="&lt;b&gt;CloudWatch Alarms (4 Alarm)&lt;/b&gt;&lt;br&gt;Giám sát tải và tình trạng máy chủ EC2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2F8;strokeColor=#DB2777;fontColor=#831843;fontSize=11;" vertex="1" parent="sec_cloudwatch">
+          <mxGeometry x="15" y="45" width="270" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="alarm_cpu" value="&lt;b&gt;Alarms: CPUUtilization &amp;gt; 80%&lt;/b&gt;&lt;br&gt;• &lt;code&gt;cicd-cpu-web-1&lt;/code&gt; (us-east-1a)&lt;br&gt;• &lt;code&gt;cicd-cpu-web-2&lt;/code&gt; (us-east-1b)&lt;br&gt;&lt;font style=&apos;font-size: 9px; color: #64748B;&apos;&gt;Ngưỡng: &amp;gt;80% trong 5 phút. Khi ALARM: dừng deployment ngay lập tức&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#F43F5E;fontColor=#881337;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="sec_cloudwatch">
+          <mxGeometry x="15" y="110" width="270" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="alarm_status" value="&lt;b&gt;Alarms: StatusCheckFailed ≥ 1&lt;/b&gt;&lt;br&gt;• &lt;code&gt;cicd-status-web-1&lt;/code&gt;&lt;br&gt;• &lt;code&gt;cicd-status-web-2&lt;/code&gt;&lt;br&gt;&lt;font style=&apos;font-size: 9px; color: #64748B;&apos;&gt;Ngưỡng: ≥1 lỗi phần cứng/hệ điều hành trong 1 phút&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#F43F5E;fontColor=#881337;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="sec_cloudwatch">
+          <mxGeometry x="15" y="205" width="270" height="75" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cw_action" value="&lt;b&gt;Tác động tới Deployment Group:&lt;/b&gt;&lt;br&gt;Kích hoạt &lt;b&gt;DEPLOYMENT_STOP_ON_ALARM&lt;/b&gt;&lt;br&gt;→ Dừng deployment đang chạy&lt;br&gt;→ Tự động Rollback về bản v3-final" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF2F2;strokeColor=#DC2626;strokeWidth=2;fontColor=#7F1D1D;fontSize=10;align=center;" vertex="1" parent="sec_cloudwatch">
+          <mxGeometry x="15" y="300" width="270" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- VPC and EC2 Cluster Section -->
+        <mxCell id="sec_vpc" value="VPC / HẠ TẦNG CỤM EC2 (TARGET ENVIRONMENT) | Security Group: cicd-web-sg (sg-0356e87358afd3597)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#059669;strokeWidth=2;fontColor=#065F46;fontStyle=1;startSize=30;rounded=1;" vertex="1" parent="aws_cloud">
+          <mxGeometry x="20" y="490" width="1000" height="280" as="geometry" />
+        </mxCell>
+
+        <!-- Subnet 1: cicd-web-1 -->
+        <mxCell id="subnet_1" value="Public Subnet (us-east-1a)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#10B981;fontColor=#047857;fontStyle=1;startSize=25;rounded=1;" vertex="1" parent="sec_vpc">
+          <mxGeometry x="20" y="40" width="460" height="220" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ec2_web1" value="&lt;b style=&apos;font-size: 13px;&apos;&gt;EC2: cicd-web-1&lt;/b&gt;&lt;br&gt;&lt;code&gt;ID: i-0c88f250e4a1250be&lt;/code&gt; | Type: t2.micro (Amazon Linux 2023)&lt;br&gt;&lt;hr&gt;&lt;div style=&apos;text-align: left; font-size: 10px;&apos;&gt;• &lt;b&gt;Public IP:&lt;/b&gt; 18.208.211.199 (Ban đầu) → &lt;b style=&apos;color:#2563EB;&apos;&gt;52.90.161.132&lt;/b&gt; (Sau Stop/Start E5)&lt;br&gt;• &lt;b&gt;Web Server:&lt;/b&gt; Apache HTTP Server (&lt;code&gt;httpd&lt;/code&gt; enabled on boot)&lt;br&gt;• &lt;b&gt;Agent:&lt;/b&gt; AWS CodeDeploy Agent (active running)&lt;br&gt;• &lt;b&gt;IAM Role:&lt;/b&gt; &lt;code&gt;LabInstanceProfile&lt;/code&gt; (Quyền pull S3 &amp;amp; CodeDeploy)&lt;br&gt;• &lt;b&gt;Tags:&lt;/b&gt; &lt;code&gt;Project=cicd-codedeploy&lt;/code&gt;, &lt;code&gt;Owner=24110277-24110197&lt;/code&gt;, &lt;code&gt;Env=dev&lt;/code&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#059669;strokeWidth=2;fontColor=#064E3B;fontSize=11;align=center;shadow=1;" vertex="1" parent="subnet_1">
+          <mxGeometry x="15" y="35" width="430" height="165" as="geometry" />
+        </mxCell>
+
+        <!-- Subnet 2: cicd-web-2 -->
+        <mxCell id="subnet_2" value="Public Subnet (us-east-1b)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#10B981;fontColor=#047857;fontStyle=1;startSize=25;rounded=1;" vertex="1" parent="sec_vpc">
+          <mxGeometry x="520" y="40" width="460" height="220" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ec2_web2" value="&lt;b style=&apos;font-size: 13px;&apos;&gt;EC2: cicd-web-2&lt;/b&gt;&lt;br&gt;&lt;code&gt;ID: i-08a124556f6dbc4f6&lt;/code&gt; | Type: t2.micro (Amazon Linux 2023)&lt;br&gt;&lt;hr&gt;&lt;div style=&apos;text-align: left; font-size: 10px;&apos;&gt;• &lt;b&gt;Public IP:&lt;/b&gt; 98.85.228.72 (Ban đầu) → &lt;b style=&apos;color:#2563EB;&apos;&gt;98.91.192.187&lt;/b&gt; (Sau Stop/Start E5)&lt;br&gt;• &lt;b&gt;Web Server:&lt;/b&gt; Apache HTTP Server (&lt;code&gt;httpd&lt;/code&gt; enabled on boot)&lt;br&gt;• &lt;b&gt;Agent:&lt;/b&gt; AWS CodeDeploy Agent (active running)&lt;br&gt;• &lt;b&gt;IAM Role:&lt;/b&gt; &lt;code&gt;LabInstanceProfile&lt;/code&gt; (Quyền pull S3 &amp;amp; CodeDeploy)&lt;br&gt;• &lt;b&gt;Tags:&lt;/b&gt; &lt;code&gt;Project=cicd-codedeploy&lt;/code&gt;, &lt;code&gt;Owner=24110277-24110197&lt;/code&gt;, &lt;code&gt;Env=dev&lt;/code&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#059669;strokeWidth=2;fontColor=#064E3B;fontSize=11;align=center;shadow=1;" vertex="1" parent="subnet_2">
+          <mxGeometry x="15" y="35" width="430" height="165" as="geometry" />
+        </mxCell>
+
+        <!-- CONNECTORS / DATA FLOW ARROWS -->
+        <mxCell id="flow_1" value="1. git push" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8B5CF6;strokeWidth=2;fontColor=#6D28D9;fontStyle=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dev_git" target="codecommit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flow_2" value="2. Upload bundle.zip" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#EA580C;strokeWidth=2;fontColor=#C2410C;fontStyle=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dev_script" target="s3_bucket">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flow_3" value="3. create-deployment" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563EB;strokeWidth=2;fontColor=#1D4ED8;fontStyle=1;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dev_script" target="cd_dg">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="444" />
+              <mxPoint x="300" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_4" value="Revision location" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F97316;strokeWidth=1.5;dashed=1;fontColor=#EA580C;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="aws_cloud" source="s3_bucket" target="cd_dg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flow_deploy_ec2_1" value="4a. Triển khai máy 1 (OneAtATime)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#059669;strokeWidth=2;fontColor=#065F46;fontStyle=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="aws_cloud" source="cd_dg" target="ec2_web1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="470" />
+              <mxPoint x="250" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_deploy_ec2_2" value="4b. Triển khai máy 2 (Sau khi máy 1 OK)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#059669;strokeWidth=2;fontColor=#065F46;fontStyle=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="aws_cloud" source="cd_dg" target="ec2_web2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="470" />
+              <mxPoint x="755" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_ec2_pull_s3" value="Agent tải bundle .zip qua LabInstanceProfile" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D97706;strokeWidth=1.5;dashed=1;fontColor=#B45309;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="aws_cloud" source="ec2_web1" target="s3_bucket">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="15" y="648" />
+              <mxPoint x="15" y="310" />
+              <mxPoint x="160" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_metrics" value="Metrics: CPUUtilization, StatusCheck" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DB2777;strokeWidth=1.5;dashed=1;fontColor=#BE185D;exitX=0.9;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="aws_cloud" source="ec2_web2" target="sec_cloudwatch">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="540" />
+              <mxPoint x="870" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="flow_alarm_trigger" value="Tín hiệu ALARM: Stop deployment &amp;amp; Rollback (E3)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;strokeWidth=2;fontColor=#B91C1C;fontStyle=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aws_cloud" source="cw_action" target="cd_dg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flow_ssh" value="SSH Port 22 (/32)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#10B981;strokeWidth=1.5;dashed=1;fontColor=#047857;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" edge="1" parent="1" source="dev_admin_ip" target="ec2_web1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="540" />
+              <mxPoint x="280" y="727" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
