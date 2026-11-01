@@ -191,3 +191,11 @@ aws deploy create-deployment `
 - **Báo cáo tiến độ đầy đủ:** [BaoCaoTienDoTuan4.docx](./Bao%20Cao%20Tien%20Do/BaoCaoTienDoTuan4.docx)
 - **Sơ đồ thiết kế Draw.io:** [KienTrucTongThe.drawio](./docs/KienTrucTongThe.drawio)
 - **Nhật ký công việc cá nhân:** [WORKLOG.md](./WORKLOG.md)
+
+---
+##Minh chứng đã xóa EC2, S3 và SG
+- Terminate EC2: <img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/dbceb9f3-6c46-47e0-b506-879c88edb3e4" />
+
+- Xóa S3: <img width="1915" height="857" alt="image" src="https://github.com/user-attachments/assets/ae3259eb-9048-4e12-ad60-b265e471484d" />
+
+- Xóa security group: <img width="1910" height="916" alt="image" src="https://github.com/user-attachments/assets/c674ca1a-520f-4c6d-9bdd-202eba3954ad" />
