@@ -100,8 +100,8 @@ Các commit quan trọng ghi nhận tiến trình kiểm thử, hoàn thiện t�
 
 | Tên hiển thị trên GitHub | Thuộc về | Ghi chú |
 | :---: | :---: | :--- |
-| `haidat2207` | Trần Hải Đạt (24110197) | Thành viên nhóm |
-| `luanpm18` | Phạm Minh Luân (24110277) | Thành viên nhóm (Trưởng nhóm / Chủ repo) |
+| `haidat2207` | Trần Hải Đạt (24110197) | Thành viên nhóm (Trưởng nhóm) |
+| `luanpm18` | Phạm Minh Luân (24110277) | Thành viên nhóm |
 | `cicd-student` | Máy trạm thực hành chung của nhóm | Git author name cấu hình cục bộ trên máy thực hành |
 
 ---
