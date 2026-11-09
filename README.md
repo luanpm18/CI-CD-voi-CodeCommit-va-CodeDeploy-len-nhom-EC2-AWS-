@@ -194,8 +194,9 @@ aws deploy create-deployment `
 
 ---
 ##Minh chứng đã xóa EC2, S3 và SG
-- Terminate EC2: <img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/dbceb9f3-6c46-47e0-b506-879c88edb3e4" />
+- Terminate EC2: <img width="959" height="476" alt="5 3" src="https://github.com/user-attachments/assets/b61b6d0c-2e15-4ab7-b721-bbf931a2d1c6" />
 
-- Xóa S3: <img width="1915" height="857" alt="image" src="https://github.com/user-attachments/assets/ae3259eb-9048-4e12-ad60-b265e471484d" />
+- Xóa S3: <img width="959" height="473" alt="5 6" src="https://github.com/user-attachments/assets/6c90e168-45dc-4877-b752-c4eda094bf21" />
 
-- Xóa security group: <img width="1910" height="916" alt="image" src="https://github.com/user-attachments/assets/c674ca1a-520f-4c6d-9bdd-202eba3954ad" />
+- Xóa security group: <img width="959" height="471" alt="5 5" src="https://github.com/user-attachments/assets/5d13c575-b6aa-46e0-936f-ea66f5541a7a" />
+
